@@ -95,7 +95,7 @@
    (apply animate-slide `(next ,@data))))
 
 (define (header-slide #:title [title ""] #:reversed [reversed #f]
-                      #:append [append "top"] #:distance [distance 0]
+                      #:append [append 'top] #:distance [distance 0]
                       #:fade-in [fade-in #t] #:fade-out [fade-out #t]
                       #:left [left ""] #:right [right ""]
                       #:header [header ""] . data)
@@ -154,7 +154,7 @@
        (t "")))))
 
 (define (transition-slide #:title [title ""] #:reversed [reversed #f]
-                      #:append [append "top"] #:distance [distance 0]
+                      #:append [append 'top] #:distance [distance 0]
                       #:header [header ""] . data)
   (play-n
    #:title title
@@ -167,10 +167,10 @@
            n)
        header (λ (x)
                  (match append
-                   ["top"    (apply vc-append `(,distance ,x ,@data))]
-                   ["bottom" (apply vc-append `(,distance ,@data ,x))]
-                   ["left"   (apply hc-append `(,distance ,x ,@data))]
-                   ["right"  (apply hc-append `(,distance ,@data ,x))]
+                   ['top    (apply vc-append `(,distance ,x ,@data))]
+                   ['bottom (apply vc-append `(,distance ,@data ,x))]
+                   ['left   (apply hc-append `(,distance ,x ,@data))]
+                   ['right  (apply hc-append `(,distance ,@data ,x))]
                    [else     (apply vc-append `(,distance ,x ,@data))]))))))
 
 (define-syntax (picture-slide stx)
@@ -233,33 +233,33 @@
              (unless title (set! title section-title))
              (pretty-slide* #:title title . data))
 
-           (define (flip-slide #:title [title ""]
+           (define (flip-slide #:title [title #f]
                                #:flip-in [flip-in #t] #:flip-out [flip-out #t]
                                #:distance [distance 0] . data)
              (unless title (set! title section-title))
              (flip-slide* #:title title #:flip-in flip-in #:flip-out flip-out
                           #:distance distance . data))
 
-           (define (pretty->flip-slide #:title [title ""]
+           (define (pretty->flip-slide #:title [title #f]
                                        #:fade-in [fade-in #t] #:flip-out [flip-out #t]
                                        #:distance [distance 0] . data)
              (unless title (set! title section-title))
              (pretty->flip-slide* #:title title #:flip-in flip-in #:flip-out flip-out
                                   #:distance distance . data))
 
-           (define (flip->pretty-slide #:title [title ""]
+           (define (flip->pretty-slide #:title [title #f]
                                        #:flip-in [flip-in #t] #:fade-out [fade-out #t]
                                        #:distance [distance 0] . data)
              (unless title (set! title section-title))
              (flip->pretty-slide* #:title title #:flip-in flip-in #:flip-out flip-out
                                   #:distance distance . data))
 
-           (define (start-pretty-slide #:title [title ""] . data)
+           (define (start-pretty-slide #:title [title #f] . data)
              (unless title (set! title section-title))
              (start-pretty-slide* #:title title . data))
 
-           (define (header-slide #:title [title ""] #:reversed [reversed #f]
-                                 #:append [append "top"] #:distance [distance 0]
+           (define (header-slide #:title [title #f] #:reversed [reversed #f]
+                                 #:append [append 'top] #:distance [distance 0]
                                  #:fade-in [fade-in #t] #:fade-out [fade-out #t]
                                  #:left [left ""] #:right [right ""]
                                  #:header [header ""] . data)
@@ -281,8 +281,8 @@
                             #:append append #:distance distance
                             #:insert insert .data))
 
-           (define (transition-slide #:title [title ""] #:reversed [reversed #f]
-                                     #:append [append "top"] #:distance [distance 0]
+           (define (transition-slide #:title [title #f] #:reversed [reversed #f]
+                                     #:append [append 'top] #:distance [distance 0]
                                      #:header [header ""] . data)
              (unless title (set! title section-title))
              (transition-slide* #:title title #:reversed reversed #:append append
