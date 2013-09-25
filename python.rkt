@@ -41,7 +41,7 @@
  #:title "Reasons NOT to use Python"
  (item "Can be slower.")
  'next
- (item "Scailability issues.")
+ (item "Scalability issues.")
  'next
  (item "Library incompatibilities."))
 
@@ -161,7 +161,7 @@
 2 ** 10") 1.5)))
 
 (section
- #:title "Comparitors"
+ #:title "Comparators"
  (pretty->flip-slide
   (scale (scode #:append 'center "<exp> == <exp>
 <exp> != <exp>
@@ -344,7 +344,7 @@ print(tmp) # 10") 1.5))
     print(i)") 1.5))
 
  (pretty-slide
-  (medium-text "Creating Java stye for loops"))
+  (medium-text "Creating Java style for loops"))
 
  (header-slide
   #:header (scode "x = [1, 2, 3, 4, 5]
